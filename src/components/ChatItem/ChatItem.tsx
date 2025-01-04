@@ -1,16 +1,17 @@
 import "./ChatItem.css";
 
 type ChatItemProps = {
-  username: string;
+  firtName: string;
+  lastName: string;
   lastMessage: string;
   lastMessageDate: string;
 };
 
-const ChatItem = ({ username, lastMessage, lastMessageDate }: ChatItemProps) => {
+const ChatItem = ({ firtName, lastName, lastMessage, lastMessageDate }: ChatItemProps) => {
   return (
     <div className="chat-item">
       <div className="chat-item-info">
-        <h1>{username}</h1>
+        <h1>{firtName} {lastName}</h1>
         <div className="chat-content">
           <p>{lastMessage}</p>
           <span>{lastMessageDate}</span>

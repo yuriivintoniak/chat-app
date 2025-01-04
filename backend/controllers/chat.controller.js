@@ -20,3 +20,14 @@ exports.createChat = async (req, res) => {
     })
     .catch((error) => console.log("error", error));
 };
+
+exports.getAllChats = (req, res) => {
+  Chat.find()
+    .then((chats) => {
+      res.status(200).json(chats);
+    })
+    .catch((error) => {
+      console.log("error", error);
+      res.status(500).json({ message: "Failed to fetch chats", error });
+    });
+};
