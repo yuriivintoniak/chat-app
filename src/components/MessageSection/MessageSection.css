@@ -11,6 +11,7 @@
 .message {
   max-width: 60%;
   padding: 1rem;
+  margin-top: 20px;
   font-size: 1rem;
   line-height: 1.4;
   position: relative;
@@ -38,7 +39,7 @@
   font-size: 0.75rem;
   color: #888;
   position: absolute;
-  bottom: -18px;
+  bottom: -22px;
   background-color: transparent;
 }
 
