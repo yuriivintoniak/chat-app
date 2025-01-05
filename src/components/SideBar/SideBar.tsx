@@ -26,14 +26,25 @@ function SideBar() {
       });
   }, []);
 
+  const handleDelete = async (chatId: string) => {
+    try {
+      await axios.delete(`http://localhost:5000/api/chat/${chatId}`);
+      setChats((prevChats) => prevChats.filter((chat) => chat._id !== chatId));
+    } catch (error) {
+      console.error("Error deleting chat:", error);
+    }
+  };
+
   return (
     <div className="side-bar">
       <SearchChat />
-      <div style={{ display: "flex", flexDirection: "column", alignContent: "space-between" }}>
+      <div className="side-bar-content">
         <div className="chat-list">
           {chats.map((chat) => (
             <ChatItem
               key={chat._id}
+              chatId={chat._id}
+              onDelete={handleDelete}
               firtName={chat.first_name}
               lastName={chat.last_name}
               lastMessage={chat.last_message || ""}

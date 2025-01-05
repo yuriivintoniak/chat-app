@@ -31,3 +31,19 @@ exports.getAllChats = (req, res) => {
       res.status(500).json({ message: "Failed to fetch chats", error });
     });
 };
+
+exports.deleteChat = (req, res) => {
+  const { chatId } = req.params;
+
+  Chat.findByIdAndDelete(chatId)
+    .then((deletedChat) => {
+      if (!deletedChat) {
+        return res.status(404).json({ message: "Chat not found" });
+      }
+      res.status(200).json({ message: "Chat deleted!" });
+    })
+    .catch((error) => {
+      console.error("Error deleting chat:", error);
+      res.status(500).json({ message: "Error occurred while deleting the chat" });
+    });
+};
