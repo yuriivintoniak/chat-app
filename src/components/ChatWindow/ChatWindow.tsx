@@ -1,7 +1,13 @@
+import ChatHeader from "../ChatHeader/ChatHeader";
+import MessageSection from "../MessageSection/MessageSection";
+import MessageForm from "../MessageForm/MessageForm"
+
 function ChatWindow() {
   return (
-    <div style={{ width: "70%", padding: "1rem" }}>
-      <h2>Chat Window</h2>
+    <div className="chat-window" style={{ width: "70%" }}>
+      <ChatHeader />
+      <MessageSection />
+      <MessageForm />
     </div>
   );
 };

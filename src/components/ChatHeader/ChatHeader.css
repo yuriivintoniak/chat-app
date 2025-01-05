@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #aaa;
+}
+
+.username {
+  font-weight: 500;
+  font-size: 1.3rem;
+  margin: 1rem 0;
+  padding-left: 1rem;
+}
