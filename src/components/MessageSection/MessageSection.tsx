@@ -2,7 +2,7 @@ import "./MessageSection.css";
 
 interface Message {
   id: number;
-  text: string;
+  content: string;
   time: string;
   type: "right" | "left";
 }
@@ -16,7 +16,7 @@ function MessageSection({ messages }: MessageSectionProps) {
     <div className="message-section">
       {messages.map((message) => (
         <div key={message.id} className={`message ${message.type}`}>
-          <p className="message-text">{message.text}</p>
+          <p className="message-text">{message.content}</p>
           <span className={`message-time ${message.type}`}>
             {message.time}
           </span>

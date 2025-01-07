@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useChat } from "../../context/ChatContext";
 import ChatItem from "../ChatItem/ChatItem";
 import SearchChat from "../SearchChat/SearchChat";
 import CreateChatForm from "../CreateChatForm/CreateChatForm";
@@ -15,6 +16,7 @@ interface Chat {
 
 function SideBar() {
   const [chats, setChats] = useState<Chat[]>([]);
+  const { setSelectedChat } = useChat();
 
   useEffect(() => {
     axios.get("http://localhost:5000/api/chats")
@@ -25,6 +27,11 @@ function SideBar() {
         console.error("Error fetching chats:", error);
       });
   }, []);
+
+  const handleSelectChat = (chat: Chat) => {
+    setSelectedChat(chat);
+    console.log("Selected chat:", chat);
+  };
 
   const handleDelete = async (chatId: string) => {
     try {
@@ -45,6 +52,7 @@ function SideBar() {
               key={chat._id}
               chatId={chat._id}
               onDelete={handleDelete}
+              onClick={() => handleSelectChat(chat)}
               firtName={chat.first_name}
               lastName={chat.last_name}
               lastMessage={chat.last_message || ""}

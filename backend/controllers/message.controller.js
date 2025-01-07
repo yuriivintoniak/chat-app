@@ -1,12 +1,17 @@
 const Message = require("../models/message.model");
 
 exports.sendMessage = (req, res) => {
-  const { chatId, content } = req.body;
+  const { chatId, content, type } = req.body;
 
   const newMessage = new Message({
     chat_id: chatId,
     content: content,
+    type: type,
   });
+
+  if (!content || !content.trim()) {
+    return res.status(400).json({ message: "Invalid text" });
+  }
 
   newMessage
     .save()

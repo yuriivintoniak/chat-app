@@ -1,3 +1,4 @@
+import { useChat } from "../../context/ChatContext";
 import { useState } from "react";
 import ChatHeader from "../ChatHeader/ChatHeader";
 import MessageSection from "../MessageSection/MessageSection";
@@ -5,12 +6,13 @@ import MessageForm from "../MessageForm/MessageForm"
 
 interface Message {
   id: number;
-  text: string;
+  content: string;
   time: string;
   type: "right" | "left";
 }
 
 function ChatWindow() {
+  const { selectedChat } = useChat();
   const [messages, setMessages] = useState<Message[]>([]);
 
   const handleSendMessage = (text: string) => {
@@ -18,7 +20,7 @@ function ChatWindow() {
       ...prevMessages,
       {
         id: Date.now(),
-        text: text,
+        content: text.trim(),
         type: "right",
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       },
@@ -27,9 +29,18 @@ function ChatWindow() {
 
   return (
     <div className="chat-window" style={{ width: "70%" }}>
-      <ChatHeader />
-      <MessageSection messages={messages} />
-      <MessageForm onSendMessage={handleSendMessage} />
+      {selectedChat ? (
+        <>
+          <ChatHeader 
+            firstName={selectedChat.first_name} 
+            lastName={selectedChat.last_name} 
+          />
+          <MessageSection messages={messages} />
+          <MessageForm chatId={selectedChat._id} onSendMessage={handleSendMessage} />
+        </>
+      ) : (
+        <p>Select a chat to start messaging</p>
+      )}
     </div>
   );
 };

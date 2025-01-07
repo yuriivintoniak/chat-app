@@ -1,9 +1,14 @@
 import "./ChatHeader.css";
 
-function ChatHeader() {
+interface ChatHeaderProps {
+  firstName: string;
+  lastName: string;
+}
+
+function ChatHeader({ firstName, lastName }: ChatHeaderProps) {
   return (
     <div className="container">
-      <h3 className="username">Alice Freeman</h3>
+      <h3 className="username">{firstName} {lastName}</h3>
     </div>
   );
 }
