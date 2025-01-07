@@ -1,5 +1,6 @@
 import { useChat } from "../../context/ChatContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import ChatHeader from "../ChatHeader/ChatHeader";
 import MessageSection from "../MessageSection/MessageSection";
 import MessageForm from "../MessageForm/MessageForm"
@@ -14,6 +15,19 @@ interface Message {
 function ChatWindow() {
   const { selectedChat } = useChat();
   const [messages, setMessages] = useState<Message[]>([]);
+
+  useEffect(() => {
+    if (selectedChat) {
+      axios
+        .get(`http://localhost:5000/api/messages/${selectedChat._id}`)
+        .then((response) => {
+          setMessages(response.data);
+        })
+        .catch((error) => {
+          console.error("Error loading messages:", error);
+        });
+    }
+  }, [selectedChat]);
 
   const handleSendMessage = (text: string) => {
     setMessages((prevMessages) => [

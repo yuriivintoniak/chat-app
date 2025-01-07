@@ -14,8 +14,8 @@ interface MessageSectionProps {
 function MessageSection({ messages }: MessageSectionProps) {
   return (
     <div className="message-section">
-      {messages.map((message) => (
-        <div key={message.id} className={`message ${message.type}`}>
+      {messages.map((message, index) => (
+        <div key={index} className={`message ${message.type}`}>
           <p className="message-text">{message.content}</p>
           <span className={`message-time ${message.type}`}>
             {message.time}
