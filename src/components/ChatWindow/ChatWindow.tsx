@@ -29,13 +29,13 @@ function ChatWindow() {
     }
   }, [selectedChat]);
 
-  const handleSendMessage = (text: string) => {
+  const handleSendMessage = (text: string, type: "right" | "left") => {
     setMessages((prevMessages) => [
       ...prevMessages,
       {
         id: Date.now(),
         content: text.trim(),
-        type: "right",
+        type: type,
         time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
       },
     ]);

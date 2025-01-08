@@ -5,7 +5,7 @@ import "./MessageForm.css";
 
 interface MessageFormProps {
   chatId: string;
-  onSendMessage: (text: string) => void;
+  onSendMessage: (text: string, type: "right" | "left") => void;
 }
 
 function MessageForm({ chatId, onSendMessage }: MessageFormProps) {
@@ -33,7 +33,14 @@ function MessageForm({ chatId, onSendMessage }: MessageFormProps) {
 
       console.log("Server response:", response.data);
 
-      onSendMessage(message);
+      const { sentMessage, autoQuote } = response.data;
+
+      onSendMessage(sentMessage.content, "right");
+
+      setTimeout(() => { 
+        onSendMessage(autoQuote.content, "left");
+      }, 3000);
+
       setMessage("");
     } catch (error) {
       console.error("Error sending message:", error);

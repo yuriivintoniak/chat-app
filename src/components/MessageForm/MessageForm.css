@@ -1,8 +1,8 @@
 .message-form-container {
-  width: 1300px;
+  width: 100%;
   padding: 1rem;
-  position: absolute;
-  bottom: 0px;
+  position: fixed;
+  bottom: 0;
   display: flex;
   gap: 0.5rem;
   align-items: center;
@@ -11,7 +11,7 @@
 }
 
 .message-form {
-  width: 100%;
+  width: 1310px;
   display: flex;
   position: relative;
 }
