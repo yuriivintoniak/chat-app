@@ -51,3 +51,19 @@ exports.getAllMessages = (req, res) => {
       res.status(500).json({ message: "Failed to fetch messages" });
     });
 };
+
+exports.deleteMessage = (req, res) => {
+  const { messageId } = req.params;
+
+  Message.findByIdAndDelete(messageId)
+    .then((deletedMessage) => {
+      if (!deletedMessage) {
+        return res.status(404).json({ message: "Message not found" });
+      }
+      res.status(200).json({ message: "Message deleted!" });
+    })
+    .catch((error) => {
+      console.error("Error deleting message:", error);
+      res.status(500).json({ message: "Error occurred while deleting message" });
+    });
+};

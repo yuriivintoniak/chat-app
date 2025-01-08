@@ -1,5 +1,5 @@
 .message-section {
-  height: 737px;
+  height: 708px;
   padding: 1rem;
   margin-top: 96px;
   overflow-y: auto;
@@ -11,12 +11,28 @@
 
 .message {
   max-width: 60%;
-  padding: 1rem;
+  padding: 1.2rem;
   margin-top: 20px;
   font-size: 1rem;
   line-height: 1.4;
   position: relative;
   border-radius: 8px;
+}
+
+.message:hover .options-icon {
+  display: block;
+}
+
+.options-icon {
+  display: none;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+}
+
+.options-icon:hover {
+  color: #007bff;
 }
 
 .left {

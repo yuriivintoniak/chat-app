@@ -1,7 +1,8 @@
+import { IoClose } from "react-icons/io5";
 import "./MessageSection.css";
 
 interface Message {
-  id: number;
+  _id: number;
   content: string;
   time: string;
   type: "right" | "left";
@@ -9,17 +10,21 @@ interface Message {
 
 interface MessageSectionProps {
   messages: Message[];
+  onDelete: (id: number) => void;
 }
 
-function MessageSection({ messages }: MessageSectionProps) {
+function MessageSection({ messages, onDelete }: MessageSectionProps) {
   return (
     <div className="message-section">
-      {messages.map((message, index) => (
-        <div key={index} className={`message ${message.type}`}>
+      {messages.map((message) => (
+        <div key={message._id} className={`message ${message.type}`}>
           <p className="message-text">{message.content}</p>
-          <span className={`message-time ${message.type}`}>
-            {message.time}
-          </span>
+          <span className={`message-time ${message.type}`}>{message.time}</span>
+          {message.type === "right" && (
+            <div className="options-icon" onClick={() => onDelete(message._id)}>
+              <IoClose />
+            </div>
+          )}
         </div>
       ))}
     </div>
