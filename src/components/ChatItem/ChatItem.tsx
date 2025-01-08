@@ -8,10 +8,18 @@ type ChatItemProps = {
   lastMessage: string;
   lastMessageDate: string;
   onDelete: (chatId: string) => void;
+  onClick: (chatData: {
+    chatId: string;
+    firtName: string;
+    lastName: string;
+    lastMessage: string;
+    lastMessageDate: string;
+  }) => void;
 };
 
 const ChatItem = ({ 
-  chatId, 
+  chatId,
+  onClick,
   onDelete, 
   firtName, 
   lastName, 
@@ -19,8 +27,12 @@ const ChatItem = ({
   lastMessageDate 
 }: ChatItemProps) => {
 
+  const handleClick = () => {
+    onClick({ chatId, firtName, lastName, lastMessage, lastMessageDate });
+  };
+
   return (
-    <div className="chat-item">
+    <div onClick={handleClick} className="chat-item">
       <div className="chat-item-info">
         <h1>{firtName} {lastName}</h1>
         <div className="chat-content">

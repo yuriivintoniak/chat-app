@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const connectToDatabase = require("./config/db");
 const chatRoutes = require("./routes/chat.route");
+const messageRoutes = require("./routes/message.route");
 
 require("dotenv").config();
 
@@ -13,6 +14,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api", chatRoutes);
+app.use("/api", messageRoutes);
 
 app.get("/", (req, res) => {
   res.send("Backend is running!");

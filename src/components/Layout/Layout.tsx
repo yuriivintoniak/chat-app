@@ -1,12 +1,21 @@
+import { ChatProvider } from "../../context/ChatContext";
 import SideBar from "../SideBar/SideBar";
 import ChatWindow from "../ChatWindow/ChatWindow";
 
 function Layout() {
   return (
-    <div style={{ display: "flex", height: "100vh" }}>
-      <SideBar />
-      <ChatWindow />
-    </div>
+    <ChatProvider>
+      <div 
+        style={{ 
+          display: "flex", 
+          flexDirection: "row", 
+          height: "100vh", 
+        }}
+      >
+        <SideBar />
+        <ChatWindow />
+      </div>
+    </ChatProvider>
   );
 };
 
