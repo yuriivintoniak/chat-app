@@ -30,17 +30,15 @@ function MessageForm({ chatId, onSendMessage }: MessageFormProps) {
         content: message.trim(),
         type: "right",
       });
-
       console.log("Server response:", response.data);
 
       const { sentMessage, autoQuote } = response.data;
 
       onSendMessage(sentMessage.content, "right");
-
       setTimeout(() => { 
         onSendMessage(autoQuote.content, "left");
       }, 3000);
-
+      
       setMessage("");
     } catch (error) {
       console.error("Error sending message:", error);

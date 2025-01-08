@@ -17,6 +17,7 @@ interface Chat {
 function SideBar() {
   const [chats, setChats] = useState<Chat[]>([]);
   const { selectedChat, setSelectedChat } = useChat();
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
   useEffect(() => {
     axios.get("http://localhost:5000/api/chats")
@@ -27,6 +28,15 @@ function SideBar() {
         console.error("Error fetching chats:", error);
       });
   }, []);
+
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+  };
+
+  const filteredChats = chats.filter((chat) => {
+    const fullName = `${chat.first_name} ${chat.last_name}`.toLowerCase();
+    return fullName.includes(searchQuery.toLowerCase());
+  });
 
   const handleSelectChat = (chat: Chat) => {
     setSelectedChat(chat);
@@ -44,10 +54,10 @@ function SideBar() {
 
   return (
     <div className="side-bar">
-      <SearchChat />
+      <SearchChat value={searchQuery} onSearch={handleSearch} />
       <div>
         <div className="chat-list">
-          {chats.map((chat) => (
+          {filteredChats.map((chat) => (
             <ChatItem
               key={chat._id}
               chatId={chat._id}

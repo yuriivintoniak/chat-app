@@ -1,6 +1,7 @@
 import { useChat } from "../../context/ChatContext";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import dayjs from "dayjs";
 import ChatHeader from "../ChatHeader/ChatHeader";
 import MessageSection from "../MessageSection/MessageSection";
 import MessageForm from "../MessageForm/MessageForm";
@@ -46,7 +47,7 @@ function ChatWindow() {
         _id: Date.now(),
         content: text.trim(),
         type: type,
-        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        time: dayjs().format("HH:mm"),
       },
     ]);
   };

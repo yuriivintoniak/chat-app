@@ -1,12 +1,14 @@
-import { useState } from "react";
 import { RiSearch2Line } from "react-icons/ri";
 import "./SearchChat.css";
 
-const SearchChat = () => {
-  const [value, setValue] = useState<string>("");
+type SearchChatProps = {
+  value: string;
+  onSearch: (query: string) => void;
+};
 
+const SearchChat = ({ value, onSearch }: SearchChatProps) => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value);
+    onSearch(event.target.value);
   };
 
   return (
