@@ -16,7 +16,7 @@ interface Chat {
 
 function SideBar() {
   const [chats, setChats] = useState<Chat[]>([]);
-  const { setSelectedChat } = useChat();
+  const { selectedChat, setSelectedChat } = useChat();
 
   useEffect(() => {
     axios.get("http://localhost:5000/api/chats")
@@ -45,7 +45,7 @@ function SideBar() {
   return (
     <div className="side-bar">
       <SearchChat />
-      <div className="side-bar-content">
+      <div>
         <div className="chat-list">
           {chats.map((chat) => (
             <ChatItem
@@ -57,6 +57,7 @@ function SideBar() {
               lastName={chat.last_name}
               lastMessage={chat.last_message || ""}
               lastMessageDate={chat.last_message_time || ""}
+              isSelected={selectedChat?._id === chat._id}
             />
           ))}
         </div>

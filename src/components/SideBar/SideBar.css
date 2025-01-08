@@ -6,13 +6,9 @@
   border-right: 1px solid #ccc;
 }
 
-.side-bar-content {
-  display: flex;
-  flex-direction: column;
-  align-content: space-between;
-}
-
 .chat-list {
+  height: 741px;
+  margin-top: 96px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;

@@ -1,8 +1,14 @@
 .form-container {
+  width: 560px;
+  height: 91px;
   padding: 10px;
+  position: fixed;
+  bottom: 0;
+  padding: 0.5rem;
   margin-top: 430px;
   background-color: #f7f7f7;
-  border-top: 1px solid #ddd;
+  background-color: #ddd;
+  border-top: 1px solid #aaa;
 }
 
 .error-message {

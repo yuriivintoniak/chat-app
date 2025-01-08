@@ -1,4 +1,4 @@
-import { FaTrash } from "react-icons/fa";
+import { IoClose } from "react-icons/io5";
 import "./ChatItem.css";
 
 type ChatItemProps = {
@@ -15,6 +15,7 @@ type ChatItemProps = {
     lastMessage: string;
     lastMessageDate: string;
   }) => void;
+  isSelected: boolean;
 };
 
 const ChatItem = ({ 
@@ -24,7 +25,8 @@ const ChatItem = ({
   firtName, 
   lastName, 
   lastMessage, 
-  lastMessageDate 
+  lastMessageDate,
+  isSelected
 }: ChatItemProps) => {
 
   const handleClick = () => {
@@ -32,7 +34,7 @@ const ChatItem = ({
   };
 
   return (
-    <div onClick={handleClick} className="chat-item">
+    <div onClick={handleClick} className={`chat-item ${isSelected ? "selected" : ""}`}>
       <div className="chat-item-info">
         <h1>{firtName} {lastName}</h1>
         <div className="chat-content">
@@ -41,7 +43,7 @@ const ChatItem = ({
         </div>
       </div>
       <button className="delete-btn" onClick={() => onDelete(chatId)}>
-        <FaTrash />
+        <IoClose />
       </button>
     </div>
   );

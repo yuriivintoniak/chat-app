@@ -19,11 +19,11 @@
   border-radius: 8px;
 }
 
-.message:hover .options-icon {
+.message:hover .delete-icon {
   display: block;
 }
 
-.options-icon {
+.delete-icon {
   display: none;
   position: absolute;
   top: 5px;
@@ -31,7 +31,7 @@
   cursor: pointer;
 }
 
-.options-icon:hover {
+.delete-icon:hover {
   color: #007bff;
 }
 

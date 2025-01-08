@@ -10,7 +10,11 @@
 }
 
 .chat-item:hover {
-  background-color: #cabccd;
+  background-color: #f0f0f0;
+}
+
+.chat-item.selected {
+  background-color: #dfefff;
 }
 
 .chat-item-info {

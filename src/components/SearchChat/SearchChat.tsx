@@ -16,9 +16,9 @@ const SearchChat = () => {
         <input
           type="text"
           value={value}
-          onChange={handleInputChange}
           className="search-input"
-          placeholder="Search or start new chat"
+          placeholder="Search chat"
+          onChange={handleInputChange}
         />
       </form>
     </div>

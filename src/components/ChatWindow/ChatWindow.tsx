@@ -3,7 +3,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import ChatHeader from "../ChatHeader/ChatHeader";
 import MessageSection from "../MessageSection/MessageSection";
-import MessageForm from "../MessageForm/MessageForm"
+import MessageForm from "../MessageForm/MessageForm";
+import "./ChatWindow.css";
 
 interface Message {
   _id: number;
@@ -51,7 +52,7 @@ function ChatWindow() {
   };
 
   return (
-    <div className="chat-window" style={{ width: "70%" }}>
+    <div className="chat-window">
       {selectedChat ? (
         <>
           <ChatHeader firstName={selectedChat.first_name} lastName={selectedChat.last_name} />
@@ -59,7 +60,7 @@ function ChatWindow() {
           <MessageForm chatId={selectedChat._id} onSendMessage={handleSendMessage} />
         </>
       ) : (
-        <p>Select a chat to start messaging</p>
+        <div className="empty-chat-message">Select a chat to start messaging</div>
       )}
     </div>
   );

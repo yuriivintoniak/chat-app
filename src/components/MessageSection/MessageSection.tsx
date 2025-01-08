@@ -21,7 +21,7 @@ function MessageSection({ messages, onDelete }: MessageSectionProps) {
           <p className="message-text">{message.content}</p>
           <span className={`message-time ${message.type}`}>{message.time}</span>
           {message.type === "right" && (
-            <div className="options-icon" onClick={() => onDelete(message._id)}>
+            <div className="delete-icon" onClick={() => onDelete(message._id)}>
               <IoClose />
             </div>
           )}
